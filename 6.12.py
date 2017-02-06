@@ -8,6 +8,15 @@ class measure(e):
     milimetre = 4
     centimetre = 5
 
+
+class converter():  # Избавляемся от непосредственных переменных.
+    decimetre = 0.1
+    kilometre = 1000
+    metre = 1
+    milimetre = 0.001
+    centimetre = 0.01
+
+
 flag = True
 while flag:
     try:
@@ -18,13 +27,13 @@ while flag:
         continue
     else:
         if p == measure.kilometre:
-            x *= 1000
+            x *= converter.kilometre
         elif p == measure.decimetre:
-            x /= 10
+            x /= converter.decimetre
         elif p == measure.milimetre:
-            x /= 1000
+            x /= converter.milimetre
         elif p == measure.centimetre:
-            x /= 100
+            x /= converter.centimetre
         elif p == measure.metre:
             x = x
         print('Metre lenght: {}'.format(x))
