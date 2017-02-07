@@ -9,7 +9,7 @@ class measure(e):
     centimetre = 5
 
 
-class converter():  # Избавляемся от непосредственных переменных.
+class converter(e):  # Избавляемся от непосредственных переменных.
     decimetre = 0.1
     kilometre = 1000
     metre = 1
