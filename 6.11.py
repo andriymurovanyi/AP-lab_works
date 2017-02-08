@@ -10,9 +10,14 @@ while flag:
         print('Day must be integer number')
     if d in days and y in years and m in mounths:
         if d in range(1, 31):
-            print('Date of the next day: ', d + 1, m, y)
+            print('Date of the next day: {}.{}.{}'.format(d + 1, m, y))
+        elif d == 31 or m == 12:
+            print('Date of the next day: {}.{}.{}'.format(1, 1, y + 1))
         elif d == 31:
-            print('Date of the next day: ', 1, m + 1, y)
+            print('Date of the next day: {}.{}.{}'.format(1, m + 1, y))
+
+
+
     else:
         print('Data out of range!')
 
