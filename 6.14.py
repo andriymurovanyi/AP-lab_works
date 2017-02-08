@@ -30,16 +30,20 @@ while flag:
         year = int(year)
         first = -56
         c = True
-        while c:
-            for i in color:
-                for j in animal:
-                    if year == first:
-                        print('По старояпонскому: ', color(i).name, animal(j).name)
-                        c = False
+        if year < 0:
+            print('Введите год нашей эры')
+            continue
+        else:
+            while c:
+                for i in color:
+                    for j in animal:
+                        if year == first:
+                            print('По старояпонскому: ', color(i).name, animal(j).name)
+                            c = False
+                            break
+                        first += 1
+                    if not c:
                         break
-                    first += 1
-                if not c:
-                    break
     else:
         try:
             year = float(year)
