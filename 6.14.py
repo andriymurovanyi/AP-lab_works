@@ -30,7 +30,7 @@ while flag:
         year = int(year)
         first = -56
         c = True
-        if year <= 0:
+        if year < 0:
             print('Введите год нашей эры')
             continue
         else:
@@ -42,8 +42,7 @@ while flag:
                             c = False
                             break
                         first += 1
-                    if not c:
-                        break
+                    break
     else:
         try:
             year = float(year)
@@ -51,6 +50,7 @@ while flag:
             continue
         except ValueError:
             print('Год должен быть числом!')
+            continue
     while True:
         x = input('Try again? [y/n]').lower()
         if x == 'y':
