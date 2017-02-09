@@ -3,46 +3,40 @@ import sys
 
 
 class color(e):
-    Green = 1
-    Red = 2
-    Yellow = 3
-    White = 4
-    Black = 5
+    Green = 0
+    Red = 1
+    Yellow = 2
+    White = 3
+    Black = 4
 
 
 class animal(e):
-    Rat = 1
-    Cow = 2
-    Tiger = 3
-    Rabbit = 4
-    Dragon = 5
-    Snake = 6
-    Horse = 7
-    Sheep = 8
-    Monkey = 9
-    Chicken = 10
-    Dog = 11
-    Pig = 12
+    Rat = 0
+    Cow = 1
+    Tiger = 2
+    Rabbit = 3
+    Dragon = 4
+    Snake = 5
+    Horse = 6
+    Sheep = 7
+    Monkey = 8
+    Chicken = 9
+    Dog = 10
+    Pig = 11
 flag = True
 while flag:
     year = input('Введите год: ')
     if year.isdigit():
-        year = int(year)
-        first = -56
-        c = True
-        if year < 0:
-            print('Введите год нашей эры')
-            continue
+        if int(year) > 0:
+            year = int(year) % 60 - 4  # Начало отсчета нашей эры. 0-ой год.
+            c = 0  # Номер нужного нам цвета.
+            while year >= 12:
+                year -= 12
+                c += 1
+            zh = year % 12  # zh - животное(Определяем его номер)
+            print('По древнеяпонскому: ', color(c).name, animal(zh).name)
         else:
-            while c:
-                for i in color:
-                    for j in animal:
-                        if year == first:
-                            print('По старояпонскому: ', color(i).name, animal(j).name)
-                            c = False
-                            break
-                        first += 1
-                    break
+            print('Введите год нашей эры!')
     else:
         try:
             year = float(year)
