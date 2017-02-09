@@ -15,9 +15,6 @@ while flag:
             print('Date of the next day: {}.{}.{}'.format(1, 1, y + 1))
         elif d == 31:
             print('Date of the next day: {}.{}.{}'.format(1, m + 1, y))
-
-
-
     else:
         print('Data out of range!')
 
