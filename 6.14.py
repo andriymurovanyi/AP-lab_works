@@ -28,7 +28,7 @@ while flag:
     year = input('Введите год: ')
     if year.isdigit():
         if int(year) > 0:
-            year = int(year) % 60 - 4  # Начало отсчета нашей эры. 0-ой год.
+            year = int(year) % 60 - 4  
             c = 0  # Номер нужного нам цвета.
             while year >= 12:
                 year -= 12
