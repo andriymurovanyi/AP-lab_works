@@ -31,7 +31,7 @@ while flag:
             year = int(year) % 60 - 4
             c = 0  # Номер нужного нам цвета.
             while year >= 12:
-                year //= 12
+                year %= 12
                 c += 1
             zh = year % 12  # zh - животное(Определяем его номер)
             print('По древнеяпонскому: ', color(c).name, animal(zh).name)
