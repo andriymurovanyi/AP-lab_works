@@ -27,13 +27,13 @@ while flag:
         continue
     else:
         if p == measure.kilometre:
-            x *= converter.kilometre
+            x *= converter.kilometre.value
         elif p == measure.decimetre:
-            x /= converter.decimetre
+            x /= converter.decimetre.value
         elif p == measure.milimetre:
-            x /= converter.milimetre
+            x /= converter.milimetre.value
         elif p == measure.centimetre:
-            x /= converter.centimetre
+            x /= converter.centimetre.value
         elif p == measure.metre:
             x = x
         print('Metre lenght: {}'.format(x))
