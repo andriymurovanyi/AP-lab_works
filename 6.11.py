@@ -9,10 +9,10 @@ while flag:
     except ValueError:
         print('Day must be integer number')
     else:
-        if d in days and m in mounths and y in years:
-            if d in range(1, 31):
-                print('Date of the next day: {}.{}.{}'.format(d + 1, m, y))
-            elif d + 1 == 32:
+        if d not in days and m not in mounths and y not in years:
+            print('Data out of range!')
+        else:
+            if d + 1 == 32:
                 d = 1
                 if m + 1 == 13:
                     m = 1
@@ -20,9 +20,7 @@ while flag:
                     print('Date of the next day: {}.{}.{}'.format(d, m, y))
                 else:
                     m += 1
-                    print('Date of the next day: {}.{}.{}'.format(d, m , y))
-        else:
-            print('Data out of range!')
+                    print('Date of the next day: {}.{}.{}'.format(d, m, y))
     while True:
         x = input('Try again? [y/n]').lower()
         if x == 'y':
