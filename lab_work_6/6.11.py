@@ -1,3 +1,6 @@
+# Murovanyi Andrey, KNIT16-A
+# По дате d, m, y определить дату следующего дня
+
 import sys
 days = range(1, 32)
 mounths = range(1, 13)
