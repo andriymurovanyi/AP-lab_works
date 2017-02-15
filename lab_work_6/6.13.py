@@ -1,3 +1,6 @@
+# Murovanyi Andrey KNIT16-A
+# По названию s-страны определить название её континента.
+
 import sys
 from enum import Enum as e
 
