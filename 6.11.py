@@ -2,20 +2,23 @@ import sys
 days = range(1, 32)
 mounths = range(1, 13)
 years = range(1901, 2016)
+
 flag = True
 while flag:
     try:
         d, m, y = int(input('Day: ')), int(input('Mounth: ')), int(input('Year: '))
     except ValueError:
         print('Day must be integer number')
-    if d in days and y in years and m in mounths:
-        if d in range(1, 31):
-            print('Date of the next day: ', d + 1, m, y)
-        elif d == 31:
-            print('Date of the next day: ', 1, m + 1, y)
-        elif m == 12:
-            print('Date of the next day: ', 1, 1 , y + 1)
-
+        continue
+    if d in days and m in mounths and y in years:
+        if d + 1 not in days:
+            d = 1
+            if m + 1 not in mounths:
+                m = 1
+                y += 1
+            else:
+                m += 1
+        print('Date of the next day: {}.{}.{}'.format(d, m, y))
     else:
         print('Data out of range!')
 
@@ -25,5 +28,3 @@ while flag:
             break
         elif x == 'n':
             sys.exit()
-
-

@@ -1,15 +1,7 @@
 from enum import Enum as e
 
 
-class measure(e):
-    decimetre = 1
-    kilometre = 2
-    metre = 3
-    milimetre = 4
-    centimetre = 5
-
-
-class converter(e):  # Избавляемся от непосредственных переменных.
+class measure(e):  # Избавляемся от непосредственных переменных.
     decimetre = 0.1
     kilometre = 1000
     metre = 1
@@ -26,17 +18,7 @@ while flag:
         print('Key or Value error!')
         continue
     else:
-        if p == measure.kilometre:
-            x *= converter.kilometre
-        elif p == measure.decimetre:
-            x /= converter.decimetre
-        elif p == measure.milimetre:
-            x /= converter.milimetre
-        elif p == measure.centimetre:
-            x /= converter.centimetre
-        elif p == measure.metre:
-            x = x
-        print('Metre lenght: {}'.format(x))
+        print('Metre lenght: {}'.format(x * p.value))
     while True:
         x = input('Try again? [y/n]').lower()
         if x == 'y':
