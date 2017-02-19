@@ -1,12 +1,43 @@
-while True:
-    N = int(input('Введите кол-во элементов:'))
-    c = 0
-    print('Введите целые числа: ')
-    for i in range(1, N + 1):
-        posl = input().split()
-        if i in posl:
-            c += 1
-    print(c)
+flag = True
+while flag:
+    try:
+        posl = sorted(input('Введите числа через пробел: ').split())
+    except ValueError:
+        print('Введите числа через пробел!')
+        continue
+    else:
+        for i in posl:
+            if not str(i).isdigit():
+                print('Вы должны ввести числа!')
+                break
+        else:
+            a = set()
+            for i in posl:
+                if posl.count(i) == 1:
+                    a.add(i)
+            print('Уникальных элементов: {}'.format(len(a)))
+    while True:
+        x = input('Try again ? [y/n]').lower()
+        if x == 'y':
+            break
+        elif x == 'n':
+            flag = False
+            break
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
