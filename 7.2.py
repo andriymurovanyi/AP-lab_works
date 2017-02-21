@@ -17,5 +17,4 @@ while True:
                 a = set(sent)
                 print(set(sorted(letters - a)))
     if input('Tap Enter key to continue...') != '':
-        print()
         break
