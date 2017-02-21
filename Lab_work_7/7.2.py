@@ -1,15 +1,18 @@
-letters = {'к', 'п', 'т', 'с', 'ф', 'х', 'ц', 'ч', 'ш'}
 import re
+letters = {'к', 'п', 'т', 'с', 'ф', 'х', 'ц', 'ч', 'ш'}
 
-while True:
+flag = True
+while flag:
+    c = 0
     sent = input('Введите предложение (через запятую) и поставьте в конце точку: ')
-    a = set()
-    if not re.search('[А-Яа-я]', sent):
-        print('Должны быть русскоязычные слова!')
+    a = set(sent)
+    if ',' not in sent or not sent.endswith('.'):
+        print('Проверьте знаки препинания!')
     else:
-        wrd = sent.split(',')
-        for i in letters:
-            for j in wrd:
-                if i not in j:
-                    a.add(i)
-        print(sorted(a))
+        if not re.search('[А-Яа-я]', sent):
+            print('Должны быть русскоязычные слова!')
+        else:
+            wrd = sent.split(',')
+            print(sorted(letters - a))
+    if input('Tap Enter key to continue...') != '':
+        break
