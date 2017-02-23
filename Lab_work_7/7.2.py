@@ -21,6 +21,6 @@ while True:
             else:
                 sent.replace('.', '')
                 a = set(sent)
-                print(set(sorted(letters - a)))
+                print(sorted(letters - a))
     if input('Tap Enter key to continue...') != '':
         break
