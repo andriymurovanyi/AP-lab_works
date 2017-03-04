@@ -9,19 +9,16 @@ while True:
     if ans == '1':
         try:
             shape = input('Введите размерность:').split('x')
-            n = int(shape[0])
-            m = int(shape[1])
+            n = m = int(shape[0])
             a = np.zeros((n, m), dtype=int)
         except (IndexError, ValueError):
             print('Введите размерность корректно!')
         else:
-            if not m == n:
-                print('Матрица должна быть квадратной!')
-            else:
-                for i in range(n):
-                    for j in range(m):
-                        a[i, j] = int(input('a[' + str(i) + '][' + str(j) + '] = '))
-                print(np.rot90(a, 3), sep='\t')
+            for i in range(n):
+                for j in range(m):
+                    a[i, j] = int(input('a[' + str(i) + ']'
+                                        '[' + str(j) + '] = '))
+            print(np.rot90(a, 3), sep='\t')
     # Сдвиг на К елементов.
     elif ans == '2':
         lenght = int(input('Введите длинну массива: '))
@@ -32,7 +29,17 @@ while True:
         print('Результат {}'.format(np.roll(b, -k)))
     # Произведение двух матриц.
     elif ans == '3':
-        pass
+        m = n = int(input('Введите размерность:'))
+        a = b = np.zeros((n, m), dtype=int)
+        for i in range(n):
+            for j in range(m):
+                a[i, j] = a[i, j] = int(input('a[' + str(i) +
+                                              '][' + str(j) + '] = '))
+                print('Mатрица 1: \n', a)
+                b[i, j] = a[i, j] = int(input('b[' + str(i) +
+                                              '][' + str(j) + '] = '))
+                print('Матрица 2: \n', b)
+        print(np.matrix(np.dot(np.matrix(a), np.matrix(b))))
     # Определитель матрицы.
     elif ans == '4':
         n = m = int(input('Размерность: '))
