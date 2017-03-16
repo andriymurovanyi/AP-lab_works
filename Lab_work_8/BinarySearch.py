@@ -4,8 +4,8 @@ while c:
     n = int(input('Кол-во элементов в массиве: '))
     a = np.arange(n + 1)
     x = int(input('Искомый элемент: '))
-    right = len(a) - 1
-    left = 0
+    right = len(a) - 1  # Правая граница.
+    left = 0  # Левая граница.
     div = 0
     flag = False
     while left <= right and not flag:
