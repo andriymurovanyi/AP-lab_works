@@ -1,5 +1,3 @@
-from enum import Enum
-
 
 class Item:
     def __init__(self, name, country, count):
@@ -21,7 +19,11 @@ class Items:
             if self.items[i].name == item_name:
                 a = self.items[i].country
                 summa += self.items[i].count
-        print('Товар экспортировался в {} в кол-ве {} штук'.format(a, summa))
+        if summa == 0:
+                print('Товар не экспортировался или его нету в базе!')
+        else:
+            print('Товар экспортировался в {} в кол-ве {} штук'.format(a, summa))
+
 items = Items()
 i1 = Item('medicine', 'Poland', 10)
 i2 = Item('computers', 'Ukraine', 20)
@@ -43,6 +45,7 @@ items.addItem(i7)
 items.addItem(i8)
 items.addItem(i9)
 items.addItem(i10)
+
 while True:
     ans = input('<1 - Посмотреть каталог товаров>\n'
                 '<2 - Смотреть информацию об эскпорте>\n'
@@ -50,13 +53,16 @@ while True:
     if ans == '1':
         pass
     elif ans == '2':
-        items.getContries(input('Введите название товара: '))
+        try:
+            items.getContries(input('Введите название товара: '))
+        except ValueError:
+            print('Нужно ввести название товара!')
     elif ans == '3':
         i_new = Item(input('Введите название товара: '),
                      input('Введите страну: '),
                      int(input('Введите количество: ')))
         items.addItem(i_new)
         continue
-    if input('Press Enter to exit...') != '':
+    if input('Press Enter to continue...') != '':
         break
 
