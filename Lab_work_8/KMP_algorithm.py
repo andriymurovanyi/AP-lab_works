@@ -1,8 +1,11 @@
-import time
+from timeit import timeit
+setup = '''
 haystack = input('Строка, в которой ищем: ')
 needle = input('Шаблон поиска: ')
 d = [0] * len(needle) # Таблица для префикс функции.
 j = 0  # Индекс для подстроки(needle).
+'''
+stmt = '''
 for i in range(1, len(needle)):
     while j > 0 and needle[i] != needle[j]:
         j = d[j - 1]
@@ -16,5 +19,8 @@ for i in range(0, len(haystack)):
     if needle[j] == haystack[i]:
         j += 1
     if j == len(needle):
-        print('Подстрока \'{}\' встречаеться {} позиции'.format(needle, i - j + 1))
+        print('Подстрока \\'{}\\' встречаеться в {} позиции'.format(needle, i - j + 1))
         j = d[j - 1]
+        '''
+print('Время записи: {} секунд'.format(timeit(stmt, setup, number=1)))
+

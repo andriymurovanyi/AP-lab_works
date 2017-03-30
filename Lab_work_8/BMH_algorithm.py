@@ -1,9 +1,13 @@
+from timeit import timeit
+setup = '''
 haystack = input('Введите строку, в которой искать: ')
 needle = input('Искомый шаблон: ')
 n = len(haystack)
 m = len(needle)
 if m > n:
     print('Шаблона нет в строке!')
+    '''
+stmt = '''
 skip = []
 for k in range(256):
     skip.append(m)
@@ -22,3 +26,5 @@ while k < n:
     else:
         print('Ничего не найдено!')
     k += skip[ord(haystack[k])]
+    '''
+print('Время записи: {} секунд'.format(timeit(stmt, setup, number=1)))
