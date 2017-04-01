@@ -33,12 +33,15 @@ class Items:
 
     def GetCountries(self, item_name):
         summa = 0
-        print('Страны, в которые экспортировался данный товар: ')
-        for i in range(len(self.items)):
-            if self.items[i].name == item_name:
-                print(self.items[i].country)
-                summa += self.items[i].count
-        print('Общий обьем: ', summa)
+        if summa == 0:
+            print('Product wasn\'t exported or it absented in Database! ')
+        else:
+            print('Countries, in which this product exported: ')
+            for i in range(len(self.items)):
+                if self.items[i].name == item_name:
+                    print(self.items[i].country)
+                    summa += self.items[i].count
+            print('Общий обьем: ', summa)
 
 
 items = Items()
@@ -62,32 +65,35 @@ items.addItem(i7)
 items.addItem(i8)
 items.addItem(i9)
 items.addItem(i10)
-print('Добро пожаловать в приложение нашей экспортной компании!\n')
+print('Welcome to app of our export company!\n')
+print('Countries, which worked with us: ')
+for i in Countries.__members__:
+    print(i)
 while True:
-    print('Выберите, что хотитите сделать:\n'
-          '<1 - Посмотреть каталог товаров>\n'
-          '<2 - Смотреть информацию об эскпорте>\n'
-          '<3 - Добавить свой товар>')
-    ans = input('Ваш ответ...: ')
+    print('Choose, what you want to do:\n'
+          '<1 - See product catalog>\n'
+          '<2 - See information about export>\n'
+          '<3 - Add new products>')
+    ans = input('Your selection is...: ')
     if ans == '1':
-        print('Каталог наших товаров: ')
+        print('Our products: ')
         for i in sorted(app):
             print(i)
     elif ans == '2':
         try:
-            items.GetCountries(input('Введите название товара: '))
+            items.GetCountries(input('Input a name of product: '))
         except ValueError:
-            print('Нужно ввести название товара!')
+            print('You must input a name of product!')
             continue
     elif ans == '3':
-        a = input('Введите название товара: ')
-        b = input('Введите страну: ')
-        c = int(input('Введите колл-во: '))
-        if a.isalpha() and b.isalpha() and b in Countries.__members__ :
+        a = input('Input a name of product: ')
+        b = input('Input country: ')
+        c = int(input('Input a quantity: '))
+        if a.isalpha() and b.isalpha() and b in Countries.__members__:
                 i_new = Item(a, b, c)
                 items.addItem(i_new)
         else:
-            print('Проверьте, возможно вы ввели что-то не так!')
+            print('Maybe you\'re input is incorrect? Check it!')
             continue
     inp = input('Press Enter to continue or smth to leave the program...')
     if inp != '':
