@@ -1,28 +1,45 @@
+from enum import Enum
+
+app = set()
+
+
+class Countries(Enum):
+    Poland = 1
+    China = 2
+    Germany = 3
+    Ukraine = 4
+    Russia = 5
+    Italy = 6
+    Slovakia = 7
+    Portugal = 8
+    Moldova = 9
+    Turkey = 10
+
 
 class Item:
     def __init__(self, name, country, count):
         self.name = name
         self.country = country
         self.count = count
+        self.app = app.add(name)
 
 
 class Items:
     def __init__(self):
         self.items = []
-    
+
     def addItem(self, item):
         self.items.append(item)
-        
-    def getContries(self, item_name):
+
+    def GetCountries(self, item_name):
         summa = 0
+        print('Страны, в которые экспортировался данный товар: ')
         for i in range(len(self.items)):
             if self.items[i].name == item_name:
-                a = self.items[i].country
+                print(self.items[i].country)
                 summa += self.items[i].count
-        if summa == 0:
-                print('Товар не экспортировался или его нету в базе!')
-        else:
-            print('Товар экспортировался в {} в кол-ве {} штук'.format(a, summa))
+        print('Общий обьем: ', summa)
+
 
 items = Items()
 i1 = Item('medicine', 'Poland', 10)
@@ -45,24 +62,36 @@ items.addItem(i7)
 items.addItem(i8)
 items.addItem(i9)
 items.addItem(i10)
-
+print('Добро пожаловать в приложение нашей экспортной компании!\n')
 while True:
-    ans = input('<1 - Посмотреть каталог товаров>\n'
-                '<2 - Смотреть информацию об эскпорте>\n'
-                '<3 - Добавить свой товар>\n')
+    print('Выберите, что хотитите сделать:\n'
+          '<1 - Посмотреть каталог товаров>\n'
+          '<2 - Смотреть информацию об эскпорте>\n'
+          '<3 - Добавить свой товар>')
+    ans = input('Ваш ответ...: ')
     if ans == '1':
-        pass
+        print('Каталог наших товаров: ')
+        for i in sorted(app):
+            print(i)
     elif ans == '2':
         try:
-            items.getContries(input('Введите название товара: '))
+            items.GetCountries(input('Введите название товара: '))
         except ValueError:
             print('Нужно ввести название товара!')
+            continue
     elif ans == '3':
-        i_new = Item(input('Введите название товара: '),
-                     input('Введите страну: '),
-                     int(input('Введите количество: ')))
-        items.addItem(i_new)
-        continue
-    if input('Press Enter to continue...') != '':
+        a = input('Введите название товара: ')
+        b = input('Введите страну: ')
+        c = int(input('Введите колл-во: '))
+        if a.isalpha() and b.isalpha() and b in Countries.__members__ :
+                i_new = Item(a, b, c)
+                items.addItem(i_new)
+        else:
+            print('Проверьте, возможно вы ввели что-то не так!')
+            continue
+    inp = input('Press Enter to continue or smth to leave the program...')
+    if inp != '':
         break
+    else:
+        continue
 
