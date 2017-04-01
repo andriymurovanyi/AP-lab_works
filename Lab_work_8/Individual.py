@@ -81,7 +81,6 @@ while True:
             print(i)
     elif ans == '2':
         try:
-
             items.GetCountries(input('Input a name of product: '))
         except ValueError:
             print('You must input a name of product!')
@@ -94,7 +93,7 @@ while True:
                 i_new = Item(a, b, c)
                 items.addItem(i_new)
         else:
-            print('Maybe you\'re input is incorrect? Check it!')
+            print('Maybe your input is incorrect? Check it!')
             continue
     inp = input('Press Enter to continue or smth to leave the program...')
     if inp != '':
