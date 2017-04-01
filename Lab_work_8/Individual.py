@@ -32,18 +32,17 @@ class Items:
         self.items.append(item)
 
     def GetCountries(self, item_name):
-        summa = 0
-        if summa == 0:
-            print('Product wasn\'t exported or it absented in Database! ')
+        V = 0
+        x = []
+
+        for i in range(len(self.items)):
+            if self.items[i].name == item_name:
+                x.append(self.items[i].country)
+                V += self.items[i].count
+        if V == 0:
+            print('Product wasn\'t exported or it is absented in Database!')
         else:
-            print('Countries, in which this product exported: ')
-            for i in range(len(self.items)):
-                if self.items[i].name == item_name:
-                    print(self.items[i].country)
-                    summa += self.items[i].count
-            print('Общий обьем: ', summa)
-
-
+            print('This product was exported in {}.Overall volume: {}'.format(x, V))
 items = Items()
 i1 = Item('medicine', 'Poland', 10)
 i2 = Item('computers', 'Ukraine', 20)
@@ -69,6 +68,7 @@ print('Welcome to app of our export company!\n')
 print('Countries, which worked with us: ')
 for i in Countries.__members__:
     print(i)
+print()
 while True:
     print('Choose, what you want to do:\n'
           '<1 - See product catalog>\n'
@@ -81,6 +81,7 @@ while True:
             print(i)
     elif ans == '2':
         try:
+
             items.GetCountries(input('Input a name of product: '))
         except ValueError:
             print('You must input a name of product!')
@@ -100,4 +101,3 @@ while True:
         break
     else:
         continue
-
