@@ -1,115 +1,107 @@
 import numpy as np
 import random as rnd
-from timeit import timeit
 import time
 
 
-def effect(*args):
-    setup = ''
-    stmt = ''
-    t = time.clock()
-    return t - time.clock()
-
-
-def bubble_sort(mass):
+def bubble_sort(arr):
     """
     Bubble sort.
 
     Is a simple sorting algorithm that repeatedly steps through
     the list to be sorted, compares each pair of adjacent items
     and swaps them if they are in the wrong order.
-    :param mass:
+    :param arr:
     :return:
     """
     n = 1
-    while n < len(mass):
-        for i in range(len(mass) - n):
-            if mass[i] > mass[i + 1]:
-                mass[i], mass[i + 1] = mass[i + 1], mass[i]
+    while n < len(arr):
+        for i in range(len(arr) - n):
+            if arr[i] > arr[i + 1]:
+                arr[i], arr[i + 1] = arr[i + 1], arr[i]
         n += 1
-    return mass
+    return arr
 
 
-def selection_sort(mass):
+def selection_sort(arr):
     """
     Selection sort.
 
      Selection sort is a sorting algorithm,
      specifically an in-place comparison sort.
-    :param mass:
+    :param arr:
     :return:
     """
-    for k in range(len(mass) - 1):
+    for k in range(len(arr) - 1):
         m = k
         i = k + 1
-        while i < len(mass):
-            if mass[i] < mass[m]:
+        while i < len(arr):
+            if arr[i] < arr[m]:
                 m = i
             i += 1
-        tmp = mass[k]
-        mass[k] = mass[m]
-        mass[m] = tmp
-    return mass
+        tmp = arr[k]
+        arr[k] = arr[m]
+        arr[m] = tmp
+    return arr
 
 
-def insertion_sort(mass):
+def insertion_sort(arr):
     """
     Insertion sort.
 
      Insertion sort is a simple sorting algorithm that
      builds the final sorted array (or list) one item
      at a time.
-    :param mass:
+    :param arr:
     :return:
     """
-    for i in range(1, len(mass)):
-        while i > 0 and mass[i] < mass[i - 1]:
-            mass[i], mass[i - 1] = mass[i - 1], mass[i]
+    for i in range(1, len(arr)):
+        while i > 0 and arr[i] < arr[i - 1]:
+            arr[i], arr[i - 1] = arr[i - 1], arr[i]
             i -= 1
-    return mass
+    return arr
 
 
-def cocktail_sort(mass):
+def cocktail_sort(arr):
     """
     Cocktail sort.
 
      Is a variation of bubble sort that is both a
      stable sorting algorithm and a comparison sort.
-    :param mass:
+    :param arr:
     :return:
     """
-    up = range(len(mass) - 1)
+    up = range(len(arr) - 1)
     while True:
         for i in (up, reversed(up)):
             c = False
             for j in i:
-                if mass[j] > mass[j + 1]:
-                    mass[j], mass[j + 1] = mass[j + 1], mass[j]
+                if arr[j] > arr[j + 1]:
+                    arr[j], arr[j + 1] = arr[j + 1], arr[j]
                     c = True
             if not c:
-                return mass
+                return arr
 
 
-def shell_sort(mass):
+def shell_sort(arr):
     """
     Shell sort.
 
      Is an in-place comparison sort
-    :param mass:
+    :param arr:
     :return:
     """
-    inc = len(mass) // 2
+    inc = len(arr) // 2
     while inc:
-        for i, el in enumerate(mass):
-            while i >= inc and mass[i - inc] > el:
-                mass[i] = mass[i - inc]
+        for i, el in enumerate(arr):
+            while i >= inc and arr[i - inc] > el:
+                arr[i] = arr[i - inc]
                 i -= inc
-            mass[i] = el
+            arr[i] = el
         inc = 1 if inc == 2 else inc * 5 // 8
-    return mass
+    return arr
 
 
-def heap_sort(mass):
+def heap_sort(arr):
     """
     Heapsort.
 
@@ -118,46 +110,67 @@ def heap_sort(mass):
      and an unsorted region, and it iteratively shrinks the
      unsorted region by extracting the largest element and
      moving that to the sorted region.
-    :param mass:
+    :param arr:
     :return:
     """
-    def heapify(mass):
-        start = (len(mass) - 2) // 2
+    def heapify(arr):
+        start = (len(arr) - 2) // 2
         while start >= 0:
-            siftDown(mass, start, len(mass))
+            siftDown(arr, start, len(arr))
             start -= 1
 
-    def siftDown(mass, start, end):
+    def siftDown(arr, start, end):
         root = start
         while root * 2 + 1 <= end:
             child = root * 2 + 1
-            if child + 1 < end and mass[child] < mass[child + 1]:
+            if child + 1 < end and arr[child] < arr[child + 1]:
                 child += 1
-            if child <= end and mass[root] < mass[child]:
-                mass[root], mass[child] = mass[child], mass[root]
+            if child <= end and arr[root] < arr[child]:
+                arr[root], arr[child] = arr[child], arr[root]
                 root = child
             else:
                 return
 
-    heapify(mass)
-    end = len(mass) - 1
+    heapify(arr)
+    end = len(arr) - 1
     while end > 0:
-        mass[end], mass[0] = mass[0], mass[end]
-        siftDown(mass, 0, end - 1)
+        arr[end], arr[0] = arr[0], arr[end]
+        siftDown(arr, 0, end - 1)
         end -= 1
-    return mass
+    return arr
+
 
 while True:
     print('Выберите способ заполнения:\n'
           '<1 - Ввести значения самому>\n'
           '<2 - Сгенерировать псевдослучайную последовательность>\n')
     a = input()
+    arr = np.zeros(1000, dtype=int)
     if a == '1':
-        mass = np.array(input('Введите массив для сортировки: ').split(', '), dtype=int)
-        print(heap_sort(mass))
+        arr = np.array(input('Введите массив для сортировки: ').split(','), dtype=int)
     elif a == '2':
-        mass = np.array(rnd.sample(range(1000), 100), dtype=int)
-        print('Входной массив:\n{}\n'.format(mass),
-              'Отсортированный:\n{}'.format(heap_sort(mass)))
+        arr = np.array(rnd.sample(range(10000), 10000), dtype=int)
+    print('Какую сортировку будем тестировать ?(Введите номер)\n'
+          '<1 - bubble_sort>\n'
+          '<2 - selection_sort>\n'
+          '<3 - insertion_sort>\n'
+          '<4 - cocktail_sort>\n'
+          '<5 - shell_sort>\n'
+          '<6 - heap_sort>')
+    ask = input()
+    t = time.clock()
+    if ask == '1':
+        bubble_sort(arr)
+    elif ask == '2':
+        selection_sort(arr)
+    elif ask == '3':
+        insertion_sort(arr)
+    elif ask == '4':
+        cocktail_sort(arr)
+    elif ask == '5':
+        shell_sort(arr)
+    elif ask == '6':
+        heap_sort(arr)
+    print('Отсортированный:{}. Время сортировки: {}'.format(arr, str(time.clock() - t)))
     if input('Press Enter to continue...') != '':
         break
