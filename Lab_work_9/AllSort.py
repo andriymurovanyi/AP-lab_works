@@ -2,8 +2,11 @@ import numpy as np
 import random as rnd
 import time
 
+comp = 0
+swap = 0
 
 def bubble_sort(arr):
+    global comp, swap
     """
     Bubble sort.
 
@@ -16,8 +19,10 @@ def bubble_sort(arr):
     n = 1
     while n < len(arr):
         for i in range(len(arr) - n):
+            comp += 1
             if arr[i] > arr[i + 1]:
                 arr[i], arr[i + 1] = arr[i + 1], arr[i]
+                swap += 1
         n += 1
     return arr
 
@@ -160,6 +165,8 @@ while True:
     ask = input()
     t = time.clock()
     if ask == '1':
+        comp = 0
+        swap = 0
         bubble_sort(arr)
     elif ask == '2':
         selection_sort(arr)
@@ -172,5 +179,6 @@ while True:
     elif ask == '6':
         heap_sort(arr)
     print('Отсортированный:{}. Время сортировки: {}'.format(arr, str(time.clock() - t)))
+    print('Сравнений ', comp, 'Перестановок ', swap)
     if input('Press Enter to continue...') != '':
         break
