@@ -1,7 +1,7 @@
 import numpy as np
 import random as rnd
 from time import clock, time
-
+from copy import deepcopy
 
 
 def bubble_sort(arr, h):
@@ -88,13 +88,15 @@ def insertion_sort(arr, h):
         if h == 1:
             while i > 0 and arr[i] < arr[i - 1]:
                 arr[i], arr[i - 1] = arr[i - 1], arr[i]
-                i -= 1
                 swap += 1
+                i -= 1
+
         elif h == 2:
             while i > 0 and arr[i] > arr[i - 1]:
                 arr[i], arr[i - 1] = arr[i - 1], arr[i]
-                i -= 1
                 swap += 1
+                i -= 1
+
     return arr, comp, swap
 
 
@@ -161,6 +163,7 @@ def shell_sort(arr, h):
                     i -= div
                     swap += 1
             arr[i] = el
+            swap += 1
         div = 1 if div == 2 else div * 5 // 8
     return arr, comp, swap
 
@@ -309,34 +312,34 @@ while True:
               '  Количество перестановок || ' + '    Время выполнения(c)      || ')
         print('=' * 107)
         t = clock()
-        r = bubble_sort(arr, how)
+        r = bubble_sort(deepcopy(arr), how)
         print('Bubble sort         ||', r[1],
               ' ' * 18, ' || ', r[2], ' ' * 21
               , ' || ', str(clock() - t))
         t = clock()
-        r = selection_sort(arr, how)
+        r = selection_sort(deepcopy(arr), how)
         print('Selection sort      ||', r[1],
               ' ' * 18, ' || ', r[2],
               ' ' * 21, ' || ', str(clock() - t))
         t = clock()
-        r = insertion_sort(arr, how)
+        r = insertion_sort(deepcopy(arr), how)
         print('Insertion sort      ||', r[1],
               ' ' * 18, ' || ', r[2], ' ' * 21,
               ' || ', str(clock() - t))
         t = clock()
         r = ''
-        r = cocktail_sort(arr, how)
+        r = cocktail_sort(deepcopy(arr), how)
         print('Cocktail shaker sort||', r[1],
               ' ' * 18, ' || ', r[2], ' ' * 21,
               ' || ', str(clock() - t))
         t = clock()
         r = ''
-        r = shell_sort(arr, how)
+        r = shell_sort(deepcopy(arr), how)
         print('Shell sort          ||', r[1],
               ' ' * 18, ' || ', r[2], ' ' * 21,
               ' || ', str(clock() - t))
         t = clock()
-        r = heap_sort(arr, how)
+        r = str(heap_sort(deepcopy(arr), how)).split()
         print('Heap sort           ||', r[1],
               ' ' * 18, ' || ', r[2], ' ' * 21,
               ' || ', str(clock() - t))
