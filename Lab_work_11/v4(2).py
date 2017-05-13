@@ -1,3 +1,5 @@
+# Мурованый Андрей.КНИТ16-А
+# Записать в файл q копию файла f
 from os import mkdir, getcwd, chdir
 chdir('D:/NewFold/MyFold')
 print('Мы находимся в следующуей директории:', getcwd())
