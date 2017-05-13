@@ -43,7 +43,7 @@ def selection_sort(arr, h):
     Selection sort is a sorting algorithm,
     specifically an in-place comparison sort.
     
-    Take 2 positional arguments arr, comp, swap
+    Take 2 positional arguments arr, h
     :param h: how you want to sort
     :param arr: array, which need to sort.
     
@@ -75,7 +75,7 @@ def insertion_sort(arr, h):
     builds the final sorted array (or list) one item
     at a time.
     
-    Take 2 positional arguments arr, comp, swap
+    Take 2 positional arguments arr, h
     :param h: how you want to sort
     :param arr: array, which need to sort.
     
@@ -107,7 +107,7 @@ def cocktail_sort(arr, h):
     Is a variation of bubble sort that is both a
     stable sorting algorithm and a comparison sort.
     
-    Take 2 positional arguments arr, comp, swap
+    Take 2 positional arguments arr, h
     :param h: how you want to sort
     :param arr: array, which need to sort.
     
@@ -140,7 +140,7 @@ def shell_sort(arr, h):
     Shell sort.
     Is an in-place comparison sort
     
-    Take 2 positional arguments arr, comp, swap
+    Take 2 positional arguments arr, h
     :param h: how you want to sort
     :param arr: array, which need to sort.
     
@@ -206,7 +206,7 @@ def heap_sort(arr, h):
     iteratively shrinks the unsorted region by extracting the largest 
     element and moving that to the sorted region.
 
-    Take 2 positional arguments arr, comp, swap
+    Take 2 positional arguments arr, h
     :param h: how you want to sort
     :param arr: array, which need to sort.
     
